@@ -1,0 +1,163 @@
+
+@font-face {
+  font-family: 'indexFontRegular';
+  src: url('webfont.eot'); /* IE9 Compat Modes */
+  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/index-regular-aaa.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+
+
+@font-face {
+  font-family: 'indexFontMedium';
+  src: url('webfont.eot'); /* IE9 Compat Modes */
+  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/index-medium-aaa.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+
+@font-face {
+  font-family: 'indexFontBold';
+  src: url('webfont.eot'); /* IE9 Compat Modes */
+  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/index-bold-aaa.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+
+html, body {
+  background: "#EAEAE5";
+  height: 100%;
+  margin:0px !important;
+  overflow: hidden !important;
+  padding: 0px !important;
+}
+.main { 
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: white;
+}
+.objktContainer {
+  /* display: table-cell; */
+  /* vertical-align: middle; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+.studentName{
+  display: flex;
+ font-size: 16px;
+ color: rgb(121, 121, 121);
+ white-space: nowrap;
+ font-kerning: none;
+ font-family: indexFontRegular;
+ animation: Color 2s linear
+}
+
+.studentNameSelected{
+  display: flex;
+ font-size: 16px;
+ color: rgb(21, 21, 21);
+ white-space: nowrap;
+ font-kerning: none;
+ font-family: indexFontRegular;
+ text-decoration: underline;
+ animation: Color 2s linear
+
+}
+
+
+.projectTitle{
+  display: flex;
+ font-size: 16px;
+ white-space: nowrap;
+ font-kerning: none;
+ font-family: indexFontRegular;
+ flex-direction: row-reverse;
+}
+
+
+.projectDescription{
+  display: flex;
+ font-size: 16px;
+ white-space: nowrap;
+ font-kerning: none;
+ font-family: indexFontRegular;
+ flex-direction: row-reverse;
+}
+
+.studentNameContainer{
+  display: flex;
+  padding: 10px;
+}
+
+.galleryContainer {
+  background: black;
+  height: 330px;
+  width: 350px;
+}
+
+.listContainer{
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+.projectName{
+  display: flex;
+  flex-direction: row-reverse;
+  height: 150px;
+  width: 100%;
+  background: white;
+  align-items: center;
+}
+
+.namesContainer{
+  display:flex;
+  flex-wrap: wrap;
+  padding: 30px;
+  justify-content: space-between;
+  background: white;
+}
+
+.sketchContainer{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.topContainer{
+  display: flex;
+  flex-direction: column;
+  background: yellow;
+  justify-content: center;
+  width: 100%;
+  height: 78%;
+}
+.justifyContainer{
+  display: flex;
+  flex-direction: column;
+  padding-right: 40px;
+}
+ 
+.opacityZero{
+  opacity: 0.0;
+}
+
+.pfiveSketch{
+  display: flex;
+  /* background: green; */
+  border: 1px solid black;
+  width: 600px;
+  height: 600px;
+}

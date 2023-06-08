@@ -1,0 +1,22 @@
+html, body {
+  background: "#EAEAE5";
+  height: 100%;
+  margin:0px !important;
+  overflow: hidden !important;
+  padding: 0px !important;
+}
+.main { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.objktContainer {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.opacityZero{
+  opacity: 0.0;
+}
