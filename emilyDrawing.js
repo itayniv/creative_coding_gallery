@@ -21,7 +21,6 @@ export function emilyDrawing(p) {
 
 
     p.setup = function () {
-        console.log("sketch 1");
         let canvas = p.createCanvas(dimm[0], dimm[1]);
 
 

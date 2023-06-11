@@ -2,13 +2,16 @@ import { rotemDrawing } from "./rotemDrawing.js";
 import { galDrawing } from "./galDrawing.js";
 import { emilyDrawing } from "./emilyDrawing.js";
 import { maorDrawing } from "./maorDrawing.js";
+import { kerenDrawing } from "./kerenDrawing.js";
+import { shiraDrawing } from "./shiraDrawing.js";
+import { katrinaDrawing } from "./katrinaDrawing.js";
+import { oriDrawing } from "./oriDrawing.js";
 
-const timeInterval = 10000;
+const timeInterval = 20000;
 let currStudent = 0;
+export let currentStudentName = null;
 let sketch = null;
 let currentSketch = 1;
-
-
 
 
 const projects = [
@@ -16,20 +19,20 @@ const projects = [
     // { name: "אשכנזי אלמוג", "sketch": galDrawing },
     // { name: "בוטבול אלון אהרון צבי", sketch: sketch03 },
     // { name: "בזה גלי", "sketch": sketch04 },
-    // { name: "בן שאול שירה ישכה", "sketch": sketch05 },
-    { name: "ברסלב אמילי שיראל", "sketch": emilyDrawing },
+    { name: "בן שאול שירה ישכה", "sketch": shiraDrawing },
+    // { name: "ברסלב אמילי שיראל", "sketch":  },
     { name: "גרינברג גל", "sketch": galDrawing },
     // { name: "המר בניה מנחם", "sketch": sketch08 },
-    // { name: "הנגלברגר קטרינה", "sketch": sketch09 },
+    { name: "הנגלברגר קטרינה", "sketch": katrinaDrawing },
     // { name: "וולף תובל", "sketch": sketch010 },
     { name: "חיים רותם", "sketch": rotemDrawing },
     // { name: "כהן ענבר", "sketch": sketch012 },
     // { name: "כהן וולין דוד", "sketch": sketch013 },
     // { name: "מנו יותם", "sketch": sketch014 },
     // { name: "נאה יובל", "sketch": sketch015 },
-    // { name: "שני אורי", "sketch": sketch016 },
+    { name: "שני אורי", "sketch": oriDrawing },
     { name: "פרידמן מאור", "sketch": maorDrawing },
-    // { name: "פישמן קרן", "sketch": sketch018 }
+    { name: "פישמן קרן", "sketch": kerenDrawing }
 ];
 
 
@@ -74,11 +77,6 @@ setTimeout(() => {
 }, 100);
 
 
-
-
-
-
-
 const selectStudent = (studentID) => {
     let parentDiv = document.querySelector('#namesContainer');
     const childDivs = parentDiv.children;
@@ -98,6 +96,9 @@ const selectStudent = (studentID) => {
             nestedSpan.classList.add("studentNameSelected");
         }
     }
+
+    currentStudentName = projects[index].name;
+    // console.log("currentStudentName", currentStudentName)
 }
 
 let intervalId;
@@ -112,12 +113,13 @@ function startTimer() {
             currStudent = 0;
         }
         selectStudentByIndex(currStudent);
-        // toggleSketch();
     }, timeInterval);
 }
 
 // select student by ID
 const selectStudentByIndex = (studentIndex) => {
+
+    console.log("selecting student by index", studentIndex)
     let parentDiv = document.querySelector('#namesContainer');
     const childDivs = parentDiv.children;
 
@@ -129,6 +131,7 @@ const selectStudentByIndex = (studentIndex) => {
         // nestedSpan.classList.add("studentName");
     }
 
+    currentStudentName = projects[studentIndex].name;
     const nestedSpan = childDivs[studentIndex].getElementsByTagName('a')[0];
     nestedSpan.classList.add("studentNameSelected");
     toggleSketch(studentIndex)
@@ -140,6 +143,7 @@ function stopTimer() {
 
 // Example condition to stop the timer
 document.addEventListener("click", function () {
+    console.log("clicking and stopping")
     // Call stopTimer() when the document is clicked
     stopTimer();
     startTimer()
@@ -151,19 +155,11 @@ document.addEventListener("click", function () {
 //////
 
 
-
+// TODO:
 // /// load sketches 
-
 const toggleSketch = (index) => {
-    if (currentSketch === 1) {
-        unloadSketch();
-        loadSketch(index);
-        currentSketch = 2;
-    } else {
-        unloadSketch();
-        loadSketch(index);
-        currentSketch = 1;
-    }
+    unloadSketch();
+    loadSketch(index);
 }
 
 
@@ -173,21 +169,8 @@ const toggleSketch = (index) => {
 // }
 
 const unloadSketch = () => {
-
-    // if (sketch != null){
-    //     console.log("removing sketch");
-        sketch.remove();
-    // }
+    sketch.remove();
 }
-
-
-// loadSketch1();
-// // toggleSketch();
-
-
-// /////
-
-
 
 
 const loadSketch = (index) => {
@@ -199,8 +182,3 @@ const loadSketch = (index) => {
 setTimeout(() => {
     loadSketch(0);
 }, 200)
-
-
-// setTimeout(() => {
-//     unloadSketch();
-// }, 3900)
