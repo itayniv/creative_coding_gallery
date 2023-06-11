@@ -1,32 +1,44 @@
-console.log("hello")
+import { rotemDrawing } from "./rotemDrawing.js";
+import { galDrawing } from "./galDrawing.js";
+import { emilyDrawing } from "./emilyDrawing.js";
+import { maorDrawing } from "./maorDrawing.js";
 
+const timeInterval = 10000;
 let currStudent = 0;
+let sketch = null;
+let currentSketch = 1;
+
+
+
 
 const projects = [
-    { name: "איבנקובסקי איתי", url: "" },
-    { name: "אשכנזי אלמוג", url: "" },
-    { name: "בוטבול אלון אהרון צבי", url: "" },
-    { name: "בזה גלי", url: "" },
-    { name: "בן שאול שירה ישכה", url: "" },
-    { name: "ברסלב אמילי שיראל", url: "" },
-    { name: "גרינברג גל", url: "" },
-    { name: "המר בניה מנחם", url: "" },
-    { name: "הנגלברגר קטרינה", url: "" },
-    { name: "וולף תובל", url: "" },
-    { name: "חיים רותם", url: "" },
-    { name: "כהן ענבר", url: "" },
-    { name: "כהן וולין דוד", url: "" },
-    { name: "מנו יותם", url: "" },
-    { name: "נאה יובל", url: "" },
-    { name: "שני אורי", url: "" },
-    { name: "פרידמן מאור", url: "" },
-    { name: "פישמן קרן", url: "" }
+    // { name: "איבנקובסקי איתי", "sketch": sketch01 },
+    // { name: "אשכנזי אלמוג", "sketch": galDrawing },
+    // { name: "בוטבול אלון אהרון צבי", sketch: sketch03 },
+    // { name: "בזה גלי", "sketch": sketch04 },
+    // { name: "בן שאול שירה ישכה", "sketch": sketch05 },
+    { name: "ברסלב אמילי שיראל", "sketch": emilyDrawing },
+    { name: "גרינברג גל", "sketch": galDrawing },
+    // { name: "המר בניה מנחם", "sketch": sketch08 },
+    // { name: "הנגלברגר קטרינה", "sketch": sketch09 },
+    // { name: "וולף תובל", "sketch": sketch010 },
+    { name: "חיים רותם", "sketch": rotemDrawing },
+    // { name: "כהן ענבר", "sketch": sketch012 },
+    // { name: "כהן וולין דוד", "sketch": sketch013 },
+    // { name: "מנו יותם", "sketch": sketch014 },
+    // { name: "נאה יובל", "sketch": sketch015 },
+    // { name: "שני אורי", "sketch": sketch016 },
+    { name: "פרידמן מאור", "sketch": maorDrawing },
+    // { name: "פישמן קרן", "sketch": sketch018 }
 ];
+
+
+
 
 
 const initPage = (projectsList, parentID) => {
     const parentNode = document.querySelector(`${parentID}`);
-    console.log("run", parentNode);
+
 
     _.map(projectsList, (d) => {
 
@@ -42,11 +54,12 @@ const initPage = (projectsList, parentID) => {
         p.innerHTML = d.name;
         parentNode.appendChild(div);
     });
+
+    selectStudentByIndex(0)
 };
 
 
 const handleClick = (e) => {
-    console.log(e.target.innerHTML);
     selectStudent(e.target.id)
 }
 
@@ -63,31 +76,15 @@ setTimeout(() => {
 
 
 
-function setup() {
-
-    const dimm = getCanvasSize();
-    const canvas = createCanvas(dimm[0], dimm[1]);
-    canvas.parent('pFiveSketch');
-}
-
-function draw() {
-    background(255);
-    text(frameCount, 100, 100)
-}
-
-
-
-const getCanvasSize = () => {
-    const parentDiv = document.querySelector('#pFiveSketch');
-    return [parentDiv.clientHeight, parentDiv.clientWidth]
-}
 
 
 
 const selectStudent = (studentID) => {
     let parentDiv = document.querySelector('#namesContainer');
     const childDivs = parentDiv.children;
-    // console.log(childDivs)
+    const index = _.findIndex(projects, (d) => d.name === studentID)
+
+    toggleSketch(index)
 
     for (let i = 0; i < childDivs.length; i++) {
         const childDiv = childDivs[i];
@@ -98,7 +95,6 @@ const selectStudent = (studentID) => {
 
 
         if (nestedSpan.id === studentID) {
-            nestedSpan.classList.remove("studentName");
             nestedSpan.classList.add("studentNameSelected");
         }
     }
@@ -109,13 +105,33 @@ let intervalId;
 function startTimer() {
     intervalId = setInterval(function () {
         // Function to execute every 10 seconds
-        console.log("Executing function every 10 seconds");
-        if (currStudent <= projects.length - 1) {
+        // console.log(`executing function every ${timeInterval / 1000} seconds`);
+        if (currStudent <= projects.length - 2) {
             currStudent++;
         } else {
             currStudent = 0;
         }
-    }, 2000);
+        selectStudentByIndex(currStudent);
+        // toggleSketch();
+    }, timeInterval);
+}
+
+// select student by ID
+const selectStudentByIndex = (studentIndex) => {
+    let parentDiv = document.querySelector('#namesContainer');
+    const childDivs = parentDiv.children;
+
+    for (let i = 0; i < childDivs.length; i++) {
+        const childDiv = childDivs[i];
+
+        const nestedSpan = childDiv.getElementsByTagName('a')[0];
+        nestedSpan.classList.remove("studentNameSelected");
+        // nestedSpan.classList.add("studentName");
+    }
+
+    const nestedSpan = childDivs[studentIndex].getElementsByTagName('a')[0];
+    nestedSpan.classList.add("studentNameSelected");
+    toggleSketch(studentIndex)
 }
 
 function stopTimer() {
@@ -128,3 +144,63 @@ document.addEventListener("click", function () {
     stopTimer();
     startTimer()
 });
+
+
+
+
+//////
+
+
+
+// /// load sketches 
+
+const toggleSketch = (index) => {
+    if (currentSketch === 1) {
+        unloadSketch();
+        loadSketch(index);
+        currentSketch = 2;
+    } else {
+        unloadSketch();
+        loadSketch(index);
+        currentSketch = 1;
+    }
+}
+
+
+// const loadSketch2 = () => {
+//     console.log("loading sketch 2")
+//     sketch = new p5(sketch02, 'pfiveSketch');
+// }
+
+const unloadSketch = () => {
+
+    // if (sketch != null){
+    //     console.log("removing sketch");
+        sketch.remove();
+    // }
+}
+
+
+// loadSketch1();
+// // toggleSketch();
+
+
+// /////
+
+
+
+
+const loadSketch = (index) => {
+    let node = document.querySelector('#pFiveSketch');
+    // console.log("loading sketch", projects[index].sketch)
+    sketch = new p5(projects[index].sketch, node);
+}
+
+setTimeout(() => {
+    loadSketch(0);
+}, 200)
+
+
+// setTimeout(() => {
+//     unloadSketch();
+// }, 3900)

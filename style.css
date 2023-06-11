@@ -4,7 +4,7 @@
   src: url('webfont.eot'); /* IE9 Compat Modes */
   src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
        url('./fonts/index-regular-aaa.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS*/
 }
 
 
@@ -14,7 +14,7 @@
   src: url('webfont.eot'); /* IE9 Compat Modes */
   src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
        url('./fonts/index-medium-aaa.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+       url('webfont.svg#svgFontName') format('svg');/* Legacy iOS*/
 }
 
 
@@ -23,7 +23,7 @@
   src: url('webfont.eot'); /* IE9 Compat Modes */
   src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
        url('./fonts/index-bold-aaa.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+       url('webfont.svg#svgFontName') format('svg');/* Legacy iOS*/
 }
 
 
@@ -59,7 +59,8 @@ html, body {
  white-space: nowrap;
  font-kerning: none;
  font-family: indexFontRegular;
- animation: Color 2s linear
+ text-decoration-color: transparent;
+ transition: 0.5s;
 }
 
 .studentNameSelected{
@@ -70,8 +71,8 @@ html, body {
  font-kerning: none;
  font-family: indexFontRegular;
  text-decoration: underline;
- animation: Color 2s linear
-
+ text-decoration-color: black;
+ transition: 0.5s;
 }
 
 
